@@ -20,7 +20,10 @@ function recaptchaCallback() {
 }
 </script>
 </html>
+
+
 <?php
+//CHECKING FOR THE CAPTCHA AND PERFORMING THE FUNCTIONS DEPENDING ON THE CASES
 if (isset($_POST['g-recaptcha-response'])){
     $secret = '6LcAphEaAAAAAPNADhYW0lVPzHvc3-gnDa3E6zDI';
     $response = $_POST['g-recaptcha-response'];
@@ -37,6 +40,12 @@ if (isset($_POST['g-recaptcha-response'])){
         echo '<script> document.getElementById("Notif").innerHTML = "Make sure the recaptcha is checked!" </script>';
     }
 }
+//CHECKING FOR THE CAPTCHA AND PERFORMING THE FUNCTIONS DEPENDING ON THE CASES
+
+
+
+
+// GENERATING THE RANDOM KEY
 function generatekey($length){
  $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
  $charactersLength = strlen($characters);
@@ -46,6 +55,11 @@ function generatekey($length){
  }
  return $randomString;
 }
+// GENERATING THE RANDOM KEY
+
+
+
+// SAVING THE KEY INTO THE DATABASE 
 function keytodb($generatedkey){
     $data = file_get_contents('database.php');
     $data2 = str_replace("<?php", "",$data);
@@ -54,6 +68,6 @@ function keytodb($generatedkey){
     file_put_contents('data.php', '<?php' . $data4 . '?>');
     return $generatedkey;
 }
-
+// SAVING THE KEY INTO THE DATABASE 
 ?>
 
